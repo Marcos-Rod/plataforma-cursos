@@ -26,6 +26,11 @@ class Course extends Model
         }
     }
 
+    //URLs amigables
+    public function getRouteKeyName(){
+        return "slug";
+    }
+
     //Relacio uno a muchos
     public function reviews()
     {

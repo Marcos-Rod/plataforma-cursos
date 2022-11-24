@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
+
+Route::get('cursos/{course}', function ($course) {
+    return "info del curso";
+})->name('courses.show');
