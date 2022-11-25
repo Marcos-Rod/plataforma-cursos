@@ -8,7 +8,7 @@ $nav_links = [
 [
     "name" => "Cursos",
     'route' => 'cursos',
-    'active' => request()->routeIs('courses.index')
+    'active' => request()->routeIs('courses.*')
 ]
 
 ];
