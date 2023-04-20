@@ -9,16 +9,7 @@
                     tenetur eaque id harum! Vitae repellendus tempore esse. Laborum quas sint delectus perferendis harum
                     cumque nesciunt veritatis porro, fugiat sunt qui.</p>
 
-                <!-- component -->
-                <!-- This is an example component -->
-                <div class="pt-2 relative mx-auto text-gray-600">
-                    <input class="w-full border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="Search">
-
-                    <button type="submit" class="border border-blue-500 bg-blue-500 text-white rounded-md px-4 py-2 h-10 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline absolute right-0 top-0 mt-2">
-                        Buscar
-                    </button>
-                </div>
-
+                    @livewire('search')
             </div>
         </div>
     </section>

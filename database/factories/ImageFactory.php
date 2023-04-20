@@ -16,7 +16,8 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
-        $imagen = 'https://api.lorem.space/image/game?w=600&h=600&key=' . Str::random(64);
+        /* $imagen = 'https://api.lorem.space/image/game?w=600&h=600&key=' . Str::random(64); */
+        $imagen = 'https://picsum.photos/600/600?random=' . Str::random(64) . '.jpg';
         
         return [
             'url' => $imagen
