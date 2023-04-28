@@ -26,6 +26,13 @@
     border: 0;
 }
 
+
+@layer components{
+    .form-input{
+        @apply border border-gray-300 rounded text-gray-600 block w-full mt-1;
+    }
+}
+
 @media(min-width:640px){
     .container{
         @apply px-6;
