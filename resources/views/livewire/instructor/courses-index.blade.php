@@ -2,8 +2,9 @@
 
     <x-table-responsive>
 
-        <div class="px-6 py-4">
-            <input wire:model="search" class="form-input w-full shadow-sm" placeholder="Ingresa el nombre de un curso">
+        <div class="px-6 py-4 flex ">
+            <input wire:model="search" class="form-input w-full shadow-sm flex-1" placeholder="Ingresa el nombre de un curso">
+            <a href="{{ route('instructor.courses.create') }}" class="btn btn-danger ml-2">Crear nuevo curso</a>
         </div>
         
         @if ($courses->count())
@@ -30,7 +31,11 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="{{$course->image->url}}" alt="">
+                                    @isset($course->image)
+                                        <img class="h-10 w-10 rounded-full object-cover object-center" src="{{ Storage::url($course->image->url) }}" alt="">
+                                    @else
+                                        <img class="h-10 w-10 rounded-full object-cover object-center" src="https://www.vivicetona.it/wp-content/uploads/2017/05/noImg_2-1.jpg" alt="">
+                                    @endisset
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
