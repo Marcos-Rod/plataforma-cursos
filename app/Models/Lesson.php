@@ -20,7 +20,7 @@ class Lesson extends Model
         return $this->belongsTo(Section::class);
     }
 
-    public function platforms(){
+    public function platform(){
         return $this->belongsTo(Platform::class);
     }
 
