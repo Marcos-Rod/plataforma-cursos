@@ -1,24 +1,24 @@
 <div>
     @foreach ($section->lessons as $item)
-    <article class="card mt-4">
+    <article class="card mt-4" x-data="{open: false}">
         <div class="card-body">
 
             @if ($lesson->id == $item->id)
-            
+
             <form wire:submit.prevent="update">
                 <div class="flex items-center">
                     <label for="" class="w-32">Nombre:</label>
                     <input type="text" class="form-input" wire:model="lesson.name">
                 </div>
                 @error('lesson.name')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
+                <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
 
                 <div class="flex items-center mt-4">
                     <label for="" class="w-32">Plataforma:</label>
                     <select wire:model="lesson.platform_id" class="form-input">
                         @foreach ($platforms as $platform)
-                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                        <option value="{{ $platform->id }}">{{ $platform->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -28,22 +28,22 @@
                     <input type="text" class="form-input" wire:model="lesson.url">
                 </div>
                 @error('lesson.url')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
+                <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
 
                 <div class="mt-4 flex justify-end">
                     <button type="button" class="btn btn-danger" wire:click="cancel">Cancelar</button>
                     <button type="submit" class="btn btn-primary ml-2">Actualizar</button>
                 </div>
-                
+
             </form>
             @else
             <header>
-                <h1><i class="far fa-play-circle text-blue-500 mr-1"></i> Lecci&oacute;n: {{ $item->name }}</h1>
+                <h1 class="cursor-pointer" x-on:click="open = !open"><i class="far fa-play-circle text-blue-500 mr-1"></i> Lecci&oacute;n: {{ $item->name }}</h1>
             </header>
 
-            
-            <div>
+
+            <div x-show="open">
                 <hr class="my-2">
 
                 <p class="text-sm">Plataforma: {{ $item->platform->name }}</p>
@@ -55,10 +55,14 @@
                     <button class="btn btn-danger text-sm" wire:click="destroy({{ $item }})">Eliminar</button>
                 </div>
 
-                <div>
-                    @livewire('instructor.lesson-description', ['lesson' => $item], key($item->id))
+                <div class="mb-4">
+                    @livewire('instructor.lesson-description', ['lesson' => $item], key('lesson-description' . $item->id))
                 </div>
-                
+
+                <div class="">
+                    @livewire('instructor.lesson-resources', ['lesson' => $item], key('lesson-resources' . $item->id))
+                </div>
+
             </div>
             @endif
 
@@ -67,11 +71,11 @@
     @endforeach
 
     <div x-data="{open: false}" class="mt-4">
-        <a  x-show="!open" x-on:click="open = true" class="flex items-center cursor-pointer">
+        <a x-show="!open" x-on:click="open = true" class="flex items-center cursor-pointer">
             <i class="far fa-plus-square text-2xl text-red-500 mr-2"></i>
             Agregar nueva lecci&oacute;n
         </a>
-        
+
         <article class="card" x-show="open">
             <div class="card-body">
                 <h1 class="text-xl font-bold mb-4">Agregar Nueva lecci&oacute;n</h1>
@@ -81,19 +85,19 @@
                     <input type="text" class="form-input" wire:model="name">
                 </div>
                 @error('name')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
+                <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
 
                 <div class="flex items-center mt-4">
                     <label for="" class="w-32">Plataforma:</label>
                     <select wire:model="platform_id" class="form-input">
                         @foreach ($platforms as $platform)
-                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                        <option value="{{ $platform->id }}">{{ $platform->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 @error('platform_id')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
+                <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
 
                 <div class="flex items-center mt-4">
@@ -101,7 +105,7 @@
                     <input type="text" class="form-input" wire:model="url">
                 </div>
                 @error('url')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
+                <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
 
                 <div class="flex justify-end mt-4">
@@ -110,6 +114,6 @@
                 </div>
             </div>
         </article>
-        
+
     </div>
 </div>
